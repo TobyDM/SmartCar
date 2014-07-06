@@ -33,7 +33,7 @@ public class FakeRemoteControlListener implements RemoteControlListener {
 		Random randomNumberGenerator = new Random();
 		int numberOfCarCommandValues = CarCommand.values().length;
 		int randomCarCommandNumber = randomNumberGenerator.nextInt(numberOfCarCommandValues);
-		CarCommand commandToSend = CarCommand.values()[randomCarCommandNumber]; // random command
+		CarCommand commandToSend = CarCommand.commandFromNumber(randomCarCommandNumber);
 		return commandToSend;
 	}
 

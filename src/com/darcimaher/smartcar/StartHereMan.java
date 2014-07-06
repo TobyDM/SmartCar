@@ -2,11 +2,11 @@ package com.darcimaher.smartcar;
 
 import lejos.nxt.Button;
 import lejos.nxt.ButtonListener;
-import lejos.nxt.LCD;
 import lejos.nxt.Motor;
 
 public class StartHereMan {
 	
+	private static final String RELAY_NAME = "Nico R";
 	private static Boolean keepGoing = true;
 
 	public static void main(String[] args) {
@@ -19,32 +19,31 @@ public class StartHereMan {
 				keepGoing = false;
 			}
 		});
-		doBluetoothThing();
-//		runCarController();
+//		doBluetoothThing();
+		runCarController();
 	}
 	
 	private static void runCarController() {
-		CarController cc = new CarController(new Car(Motor.A, Motor.B), new FakeRemoteControlListener());
+		RemoteControlListener listener = new RealRemoteControlListener(RELAY_NAME);
+//		RemoteControlListener listener = new FakeRemoteControlListener();
+		
+		CarController cc = new CarController(new Car(Motor.A, Motor.B), listener);
 		cc.loop();
 		
 	}
 	
-	private static final String RELAY_NAME = "Nico R";
-	private static void doBluetoothThing() {
-		BTCom.connect(RELAY_NAME);
-		LCD.drawString("wookie", 0, 1);
-		while(keepGoing) {
-			LCD.drawString("blah", 0, 2);
-			while(BTCom.getIsConnected()) {
-				LCD.drawString("I'm Working", 0, 3);
-				BTCom.sendData("hello world");
-				int input = BTCom.receiveInt();
-				LCD.drawString("From relay", 0, 4);
-				LCD.drawInt(input, 0, 5);
-			}
-		}
-	}
-
+//	private static void doBluetoothThing() {
+//		BluetoothCommunicator.connect(RELAY_NAME);
+//		while(keepGoing) {
+//			while(BluetoothCommunicator.getIsConnected()) {
+//				// This will WAIT for there to be something to read.
+//				int input = BluetoothCommunicator.receiveInt();
+//				LCD.drawString("Received command:", 0, 4);
+//				LCD.drawInt(input, 1, 5);
+//			}
+//		}
+//	}
+//
 //	private static void sleepAWhile(int numSeconds) {
 //		try {
 //			Thread.sleep(numSeconds * 1000);

@@ -12,7 +12,7 @@ public class Car {
 	
 	
 	public Car(RegulatedMotor leftMotor, RegulatedMotor rightMotor) {
-		coolPilot = new DifferentialPilot(WHEEL_DIAMETER_CM, TRACK_WIDTH_CM, leftMotor, rightMotor);
+		coolPilot = new DifferentialPilot(WHEEL_DIAMETER_CM, TRACK_WIDTH_CM, leftMotor, rightMotor, true);
 	}
 	
 	public void goFoward (){
@@ -30,9 +30,9 @@ public class Car {
 
 	public void curve (boolean turnToTheRight){
 		if (turnToTheRight) {
-			coolPilot.arcForward(CURVE_RADIUS_CM);
-		} else {
 			coolPilot.arcForward(-1 * CURVE_RADIUS_CM);
+		} else {
+			coolPilot.arcForward(CURVE_RADIUS_CM);
 		}
 	}
 
@@ -45,9 +45,9 @@ public class Car {
 	}
 	public void curveBackward (boolean turnToTheRight){
 		if (turnToTheRight) {
-			coolPilot.arcBackward(CURVE_RADIUS_CM);
-		} else {
 			coolPilot.arcBackward(-1 * CURVE_RADIUS_CM);
+		} else {
+			coolPilot.arcBackward(CURVE_RADIUS_CM);
 		}
 	}
 

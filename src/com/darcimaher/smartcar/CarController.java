@@ -9,10 +9,10 @@ public class CarController {
 	private final RemoteControlListener rC;
 	private boolean keepLooping;
 
-	public CarController(Car realCar, RemoteControlListener rC) {
+	public CarController(Car realCar, final RemoteControlListener rControl) {
 		super();
 		this.realCar = realCar;
-		this.rC = rC;
+		this.rC = rControl;
 
 		Button.ESCAPE.addButtonListener(new ButtonListener() {
 			
@@ -22,7 +22,9 @@ public class CarController {
 			
 			@Override
 			public void buttonPressed(Button b) {
-				keepLooping = false;			}
+				keepLooping = false;
+				rC.shutDown();
+			}
 		});
 }
 	
@@ -34,7 +36,6 @@ public class CarController {
 			CarCommand nextCommand = this.rC.giveMeTheNextCommand();
 			sendCommandToCar(nextCommand);
 		}
-		
 		
 	}
 	

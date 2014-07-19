@@ -6,7 +6,7 @@ public class RealRemoteControlListener implements RemoteControlListener {
 	public CarCommand giveMeTheNextCommand() {
 		// Get the next command from the stream
 		int commandReceivedFromRemote = BluetoothCommunicator.receiveInt();
-		
+
 		// Turn it into a CarCommand
 		return CarCommand.commandFromNumber(commandReceivedFromRemote);
 	}
@@ -18,6 +18,11 @@ public class RealRemoteControlListener implements RemoteControlListener {
 	public RealRemoteControlListener(String relayName) {
 		super();
 		this.connect(relayName);
+	}
+
+	@Override
+	public void shutDown() {
+		BluetoothCommunicator.stopConnection();
 
 	}
 

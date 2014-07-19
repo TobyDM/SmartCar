@@ -37,4 +37,9 @@ public class FakeRemoteControlListener implements RemoteControlListener {
 		return commandToSend;
 	}
 
+	@Override
+	public void shutDown() {
+		
+	}
+
 }

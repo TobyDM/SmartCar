@@ -36,7 +36,7 @@ public class BluetoothCommunicator {
 		} catch (IOException ioe) {
 			isConnected = false;
 			stopConnection();
-			connect();
+//			connect();
 			LCD.drawString("failed to send", 0, 3);
 		}
 	}
@@ -48,7 +48,7 @@ public class BluetoothCommunicator {
 		} catch (IOException ioe) {
 			isConnected = false;
 			stopConnection();
-			connect();
+//			connect();
 			LCD.drawString("failed to send", 0, 3);
 		}
 	}
@@ -59,10 +59,11 @@ public class BluetoothCommunicator {
 			s = dis.readUTF();
 			return s;
 		} catch (IOException e) {
+			LCD.clear();
 			LCD.drawString("failed to receive", 0, 3);
 			isConnected = false;
 			stopConnection();
-			connect();
+//			connect();
 			return "0";
 		}
 	}
@@ -73,10 +74,11 @@ public class BluetoothCommunicator {
 			i = dis.readInt();
 			return i;
 		} catch (IOException e) {
+			LCD.clear();
 			LCD.drawString("failed to receive", 0, 3);
 			isConnected = false;
 			stopConnection();
-			connect();
+//			connect();
 			return 0;
 		}
 	}
@@ -87,6 +89,7 @@ public class BluetoothCommunicator {
 			dis.close();
 			btc.close();
 		} catch (IOException e) {
+			LCD.clear();
 			LCD.drawString("failed to close", 0, 3);
 		}
 	}
@@ -128,9 +131,11 @@ public class BluetoothCommunicator {
 	}
 
 	public static void connect() {
-		LCD.drawString("Waiting...", 0, 3);
+		LCD.clear();
+		LCD.drawString("Waiting for bluetooth...", 0, 3);
 		btc = Bluetooth.waitForConnection();
-		LCD.drawString("Connected  ", 0, 3);
+		LCD.clear();
+		LCD.drawString("Connected to bluetooth.", 0, 3);
 		isConnected = true;
 		dis = btc.openDataInputStream();
 		dos = btc.openDataOutputStream();

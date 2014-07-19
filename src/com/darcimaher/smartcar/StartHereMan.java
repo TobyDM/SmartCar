@@ -1,7 +1,6 @@
 package com.darcimaher.smartcar;
 
 import lejos.nxt.Button;
-import lejos.nxt.LCD;
 import lejos.nxt.Motor;
 
 public class StartHereMan {
@@ -10,10 +9,10 @@ public class StartHereMan {
 
 	public static void main(String[] args) {
 
-		LCD.clear();
-		LCD.drawString("Press any key to start.", 0, 3);
+		
+		System.out.println("Press any key to start.");
 		Button.waitForAnyPress();
-		LCD.clear();
+		
 		
 //		doBluetoothThing();
 		runCarController();
@@ -34,7 +33,7 @@ public class StartHereMan {
 //			while(BluetoothCommunicator.getIsConnected()) {
 //				// This will WAIT for there to be something to read.
 //				int input = BluetoothCommunicator.receiveInt();
-//				LCD.drawString("Received command:", 0, 4);
+//				System.out.println("Received command:", 0, 4);
 //				LCD.drawInt(input, 1, 5);
 //			}
 //		}

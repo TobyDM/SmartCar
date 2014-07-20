@@ -33,6 +33,11 @@ public class RecordedCommand {
 		if (difference < 0) {
 			difference = 0;
 		}
+		
+		if (this.command == CarCommand.STOP && difference > 1000) {
+			difference = 1000;
+		}
+		
 		return difference;
 	}
 	
